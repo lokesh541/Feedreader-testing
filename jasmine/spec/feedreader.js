@@ -122,23 +122,23 @@ $(function() {
          */
 
         $('.feed').empty();
+        var oldFeed;
+        var newFeed;
 
         beforeEach(function(done) {
             loadFeed(0, function(){
-                oldFeed =  $('.feed').find("h2").first().text();
-                console.log(oldFeed)
+                oldFeed =  $('.feed').find("h2").first().html();
                 done();
             });
 
             loadFeed(1, function(){
-                newFeed = $('.feed').find("h2").first().text();
-                console.log(newFeed)
+                newFeed = $('.feed').find("h2").first().html();
                 done();
             });
         });
 
         it('new feed is loaded by the loadFeed function', function(done) {
-            expect(oldFeed).not.toBe();
+            expect(oldFeed).not.toBe(newFeed);
             done();
         });
     });
