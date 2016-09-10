@@ -35,7 +35,7 @@ $(function() {
         it('allfeed URLs defined and not empty', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBeNull();
+                expect(allFeeds[i].url.length).toBeGreaterThan(0);
             }
 
         });
@@ -49,8 +49,8 @@ $(function() {
         it('allfeed names are defined and not empty', function() {
             for (var i = 0; i < allFeeds.length; i++) {
 
-                expect(allFeeds[0].name).toBeDefined();
-                expect(allFeeds[0].name).not.toBeNull();
+                expect(allFeeds[i].name).toBeDefined();
+                expect(allFeeds[i].name.length).toBeGreaterThan(0);
             }
         });
 
@@ -114,7 +114,7 @@ $(function() {
 
     describe('New Feed Selection', function() {
 
-         /* This is a new test suite named 'New Feed Selection'
+        /* This is a new test suite named 'New Feed Selection'
 
         /* This is a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
@@ -126,15 +126,15 @@ $(function() {
         var newFeed;
 
         beforeEach(function(done) {
-            loadFeed(0, function(){
-                oldFeed =  $('.feed').find("h2").first().html();
-                done();
+            loadFeed(0, function() {
+                oldFeed = $('.feed').find("h2").first().html();
+                loadFeed(1, function() {
+                    newFeed = $('.feed').find("h2").first().html();
+                    done();
+                });
             });
 
-            loadFeed(1, function(){
-                newFeed = $('.feed').find("h2").first().html();
-                done();
-            });
+
         });
 
         it('new feed is loaded by the loadFeed function', function(done) {
@@ -145,7 +145,7 @@ $(function() {
 
 
 
-   
+
 
 
 }());
